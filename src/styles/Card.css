@@ -1,0 +1,47 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card .left {
+  padding: 0.5rem;
+}
+
+.card img {
+  max-width: 150px;
+  height: 100%;
+}
+
+.card .description,
+.card .title {
+  max-height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.card .textContent {
+  padding: 0.5rem;
+}
+.card .text {
+  font-size: 0.9rem;
+}
+.card .time {
+  color: var(--gray);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 50vw;
+  }
+  .card .text {
+    font-size: 0.7rem;
+  }
+}
