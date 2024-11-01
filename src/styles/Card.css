@@ -3,6 +3,7 @@
   border-radius: 8px;
   display: flex;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .card .left {
@@ -51,10 +52,16 @@
 }
 
 @media (max-width: 768px) {
-  .card {
-    width: 50vw;
-  }
   .card .text {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 570px) {
+  .card .text {
+    font-size: 0.8rem;
+  }
+  .card img {
+    max-width: 100px;
   }
 }

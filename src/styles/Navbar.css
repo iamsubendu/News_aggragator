@@ -1,38 +1,57 @@
+nav {
+  width: 100%;
+  overflow: hidden;
+}
+
 nav .first {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: var(--orange);
-  padding: 1rem;
+  padding: 1em;
 }
+
 nav .header {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: 600;
 }
-nav .search input {
-  width: 30vw;
-  padding: 0.4rem 1rem;
-  border: none;
-  border-top-left-radius: 0.7rem;
+
+nav .search {
+  display: flex;
+  font-size: 0.9em;
 }
+
+nav .search input {
+  width: 20em;
+  padding: 0.4em 1em;
+  border: none;
+  border-top-left-radius: 0.7em;
+  border-bottom-left-radius: 0.7em;
+}
+
 nav .search button {
-  width: 6vw;
-  padding: 0.4rem;
+  width: 6em;
+  padding: 0.4em;
   border: none;
   background-color: var(--lowBlack);
   color: var(--white);
-  border-bottom-right-radius: 0.7rem;
+  border-bottom-right-radius: 0.7em;
+  border-top-right-radius: 0.7em;
 }
 
 nav .second {
-  margin-top: 2rem;
+  margin-top: 2em;
 }
+
 nav .second ul {
   list-style: none;
   display: flex;
   justify-content: space-around;
-  margin: 0 1rem;
+  flex-wrap: wrap;
+  margin: 0 1em;
+  padding: 0;
 }
+
 nav .second ul li a {
   font-style: italic;
   color: var(--lightBlue);
@@ -41,32 +60,34 @@ nav .second ul li a {
 nav .second ul li a.activeLink {
   color: var(--black);
 }
+
 nav .second ul li a:hover {
   color: var(--orange);
 }
 
-@media all and (max-width: 900px) {
-  nav .first {
-    padding: 0.8rem;
-  }
-  nav .header {
-    font-size: 1.3rem;
-    font-weight: 600;
-  }
-  nav .search input {
-    width: 25vw;
-    padding: 0.2rem 0.8rem;
-  }
-  nav .search button {
-    padding: 0.5rem;
-    font-size: 0.7rem;
+@media all and (max-width: 790px) {
+  nav .second ul li {
+    margin: 0.5em;
   }
 
-  nav .second {
-    margin-top: 2rem;
+  nav .header {
+    font-size: 1.2em;
   }
-  nav .second ul {
-    justify-content: space-around;
-    margin: 0 1rem;
+}
+
+@media all and (max-width: 650px) {
+  nav .first {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  nav .search input {
+    width: 70vw;
+    padding: 0.2em 0.5em;
+  }
+
+  nav .search button {
+    width: 4em;
+    padding: 0.3em;
   }
 }

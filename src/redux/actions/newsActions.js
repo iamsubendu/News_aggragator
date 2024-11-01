@@ -3,7 +3,6 @@ import {
   fetchNewsAPI,
   fetchNYTAPI,
   isImageUrlValid,
-  servFilterArticles,
 } from "../../services/newsService";
 import {
   CLEAR_ARTICLES,
@@ -205,31 +204,6 @@ export const searchArticles = (searchText, date) => {
       }
     } catch (error) {
       dispatch(fetchNewsFailure("Error fetching data from The Guardian API"));
-    } finally {
-      dispatch({ type: SET_LOADER_FALSE });
-    }
-  };
-};
-
-export const filterArticles = (articles, filters) => {
-  return async (dispatch) => {
-    dispatch({ type: SET_LOADER_TRUE });
-    dispatch(clearArticles());
-    const { date, source } = filters;
-    try {
-      const filteredResponse = await servFilterArticles(articles, date, source);
-
-      if (filteredResponse.length > 0) {
-        dispatch(setFilter(filteredResponse));
-      } else {
-        dispatch(
-          fetchNewsFailure("No articles available after the filter added")
-        );
-      }
-    } catch (error) {
-      dispatch(
-        fetchNewsFailure("Something went wrong while filtering articles")
-      );
     } finally {
       dispatch({ type: SET_LOADER_FALSE });
     }

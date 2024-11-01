@@ -44,10 +44,10 @@
 .popupImage {
   width: 100%;
   height: auto;
-  margin: 10px 0;
+  margin: 1em 0;
   transform: scale(2);
   position: relative;
-  bottom: 3rem;
+  bottom: 4rem;
 }
 
 @media (max-width: 768px) {

@@ -30,8 +30,10 @@ const Navbar = () => {
   useEffect(() => {
     if (location.pathname.slice(1) === "personalized") {
       setActiveLink("personalized");
+    } else {
+      customFeed(activeLink);
     }
-  }, [location.pathname]);
+  }, [location.pathname, activeLink, customFeed]);
 
   return (
     <nav>

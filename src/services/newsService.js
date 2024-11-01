@@ -57,11 +57,3 @@ export const formatDate = (date) => {
     return `${days} day${days !== 1 ? "s" : ""} ago`;
   }
 };
-
-export const servFilterArticles = (articles, date, source) => {
-  return articles.filter((article) => {
-    const matchesDate = date ? article.published_at === date : true;
-    const matchesSource = source ? article.author === source : true;
-    return matchesDate && matchesSource;
-  });
-};

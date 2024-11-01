@@ -16,6 +16,7 @@ const News = () => {
         {loader && <Loading />}
         {!loader && <FilterPanel />}
         {(!articles || articles.length === 0) && !loader && <NoArticleFound />}
+        <hr />
         {!loader && (
           <div className="cards">
             {articles &&

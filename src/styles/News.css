@@ -7,8 +7,21 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .news .cards {
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
   grid-auto-rows: 10em;
   gap: 1rem;
+}
+
+@media (max-width: 570px) {
+  .news .personalizedSources .cards {
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  }
+}
+
+@media (max-width: 410px) {
+  .news .personalizedSources .cards {
+    grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+  }
 }

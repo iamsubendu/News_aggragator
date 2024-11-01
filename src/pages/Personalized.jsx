@@ -70,9 +70,7 @@ const Personalized = () => {
           (category) =>
             personalizedSources[category] && (
               <div key={category} className="personalizedSources">
-                <h3 style={{ margin: "2rem 0" }}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </h3>
+                <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
                 <div className="cards">
                   {personalizedSources[category].map((article, index) => (
                     <Card key={index} article={article} />
