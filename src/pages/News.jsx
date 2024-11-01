@@ -3,6 +3,8 @@ import Card from "../components/Card";
 import "../styles/News.css";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
+import FilterPanel from "../components/FilterPanel";
+import NoArticleFound from "../components/NoArticleFound";
 
 const News = () => {
   const articles = useSelector((state) => state.news.articles);
@@ -12,13 +14,16 @@ const News = () => {
     <>
       <div className="news">
         {loader && <Loading />}
-        <div className="cards">
-          {!loader &&
-            articles &&
-            articles.map((article, index) => (
-              <Card key={index} article={article} />
-            ))}
-        </div>
+        {!loader && <FilterPanel />}
+        {(!articles || articles.length === 0) && !loader && <NoArticleFound />}
+        {!loader && (
+          <div className="cards">
+            {articles &&
+              articles.map((article, index) => (
+                <Card key={index} article={article} />
+              ))}
+          </div>
+        )}
       </div>
     </>
   );

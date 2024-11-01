@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import noImage from "../assets/noImage.png";
 import "../styles/Card.css";
-import { format } from "timeago.js";
 import Loading from "./Loading";
+import { formatDate } from "../services/newsService";
+import Popup from "./Popup";
 
 const Card = ({ article }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const date = new Date(article.published_at);
-  const formattedDate = format(date);
+  const formattedDate = formatDate(date);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleCardClick = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
 
   return (
-    <div className="card">
+    <div className="card" onClick={handleCardClick}>
       <div className="left">
         {isLoading && <Loading />}
         <img
@@ -31,6 +37,7 @@ const Card = ({ article }) => {
           <small className="text text-body-secondary">{formattedDate}</small>
         </p>
       </div>
+      {isPopupOpen && <Popup article={article} onClose={handleCardClick} />}
     </div>
   );
 };

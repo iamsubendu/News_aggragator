@@ -1,5 +1,6 @@
 import {
   CLEAR_ARTICLES,
+  CLEAR_PERSONALIZED_SOURCES,
   FETCH_NEWS_SUCCESS,
   SET_FILTER,
   SET_LOADER_FALSE,
@@ -9,8 +10,7 @@ import {
 
 const initialState = {
   articles: [],
-  filter: {},
-  personalizedSources: [],
+  personalizedSources: {},
   loading: false,
   error: false,
 };
@@ -25,7 +25,7 @@ const newsReducer = (state = initialState, action) => {
     case SET_FILTER:
       return {
         ...state,
-        filter: action.payload,
+        articles: action.payload,
       };
     case SET_PERSONALIZED_SOURCES:
       return {
@@ -47,6 +47,11 @@ const newsReducer = (state = initialState, action) => {
       return {
         ...state,
         articles: [],
+      };
+    case CLEAR_PERSONALIZED_SOURCES:
+      return {
+        ...state,
+        personalizedSources: [],
       };
     default:
       return state;

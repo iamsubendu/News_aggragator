@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 import { useDispatch } from "react-redux";
 import { nytSpecificNews, searchNews } from "../redux/actions/newsActions";
@@ -8,6 +8,8 @@ const Navbar = () => {
   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
   const [activeLink, setActiveLink] = useState("home");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -15,16 +17,21 @@ const Navbar = () => {
   };
 
   const customFeed = useCallback(
-    (string) => {
-      setActiveLink(string);
-      dispatch(nytSpecificNews(string));
+    (category) => {
+      setActiveLink(category);
+      if (category !== "personalized") {
+        dispatch(nytSpecificNews(category));
+        navigate("/");
+      }
     },
-    [dispatch]
+    [dispatch, navigate]
   );
 
   useEffect(() => {
-    customFeed(activeLink);
-  }, [customFeed, activeLink]);
+    if (location.pathname.slice(1) === "personalized") {
+      setActiveLink("personalized");
+    }
+  }, [location.pathname]);
 
   return (
     <nav>
@@ -58,9 +65,9 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/"
+                to="/personalized"
+                onClick={() => setActiveLink("personalized")}
                 className={activeLink === "personalized" ? "activeLink" : ""}
-                onClick={() => customFeed("personalized")}
               >
                 #Personalized
               </NavLink>
@@ -116,7 +123,10 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className={activeLink === "entertainment" ? "activeLink" : ""}
-                onClick={() => dispatch(searchNews("entertainment"))}
+                onClick={() => {
+                  dispatch(searchNews("entertainment"));
+                  setActiveLink("entertainment");
+                }}
               >
                 #Entertainment
               </NavLink>

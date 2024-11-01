@@ -1,0 +1,7 @@
+.noArticleFound {
+  width: 100%;
+  height: 70vh;
+  color: var(--red);
+  display: grid;
+  place-content: center;
+}

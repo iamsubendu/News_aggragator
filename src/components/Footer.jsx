@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Footer.css";
 
 const Footer = () => {
-  return <footer>Footer</footer>;
+  return <footer>All rights reserved. &copy; Subendu Das</footer>;
 };
 
 export default Footer;
