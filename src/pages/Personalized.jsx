@@ -27,22 +27,39 @@ const Personalized = () => {
   const loader = useSelector((state) => state.news.loading);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const savedOptions = sessionStorage.getItem("selectedOptions");
+    if (savedOptions) {
+      setSelectedOptions(JSON.parse(savedOptions));
+    }
+  }, []);
+
   const handleOptionChange = (option) => {
     const lowerCaseOption = option.toLowerCase();
-    setSelectedOptions((prev) =>
-      prev.includes(lowerCaseOption)
-        ? prev.filter((item) => item !== lowerCaseOption)
-        : [...prev, lowerCaseOption]
+    const newSelectedOptions = selectedOptions.includes(lowerCaseOption)
+      ? selectedOptions.filter((item) => item !== lowerCaseOption)
+      : [...selectedOptions, lowerCaseOption];
+
+    setSelectedOptions(newSelectedOptions);
+    sessionStorage.setItem(
+      "selectedOptions",
+      JSON.stringify(newSelectedOptions)
     );
   };
 
   useEffect(() => {
-    if (selectedOptions.length === 0) {
-      dispatch(clearPersonalizedArticles());
-    } else {
-      dispatch(personalizedArticles(selectedOptions));
+    const needToFetchArticles = selectedOptions.some(
+      (category) => !personalizedSources[category]
+    );
+
+    if (needToFetchArticles) {
+      if (selectedOptions.length === 0) {
+        dispatch(clearPersonalizedArticles());
+      } else {
+        dispatch(personalizedArticles(selectedOptions));
+      }
     }
-  }, [selectedOptions, dispatch]);
+  }, [selectedOptions, dispatch, personalizedSources]);
 
   return (
     <div className="personalized">
