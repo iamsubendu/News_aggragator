@@ -13,6 +13,7 @@ import {
   SET_LOADER_FALSE,
   SET_LOADER_TRUE,
   SET_PERSONALIZED_SOURCES,
+  SET_SELECTED_OPTIONS_IN_PERSONALIZED_SOURCES,
 } from "./actionTypes";
 
 export const fetchNewsSuccess = (articles) => ({
@@ -27,6 +28,11 @@ export const setFilter = (filter) => ({
 
 export const setPersonalizedSources = (sources) => ({
   type: SET_PERSONALIZED_SOURCES,
+  payload: sources,
+});
+
+export const setOptionsForPersonalizedSources = (sources) => ({
+  type: SET_SELECTED_OPTIONS_IN_PERSONALIZED_SOURCES,
   payload: sources,
 });
 

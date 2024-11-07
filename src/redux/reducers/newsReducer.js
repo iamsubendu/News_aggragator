@@ -6,11 +6,13 @@ import {
   SET_LOADER_FALSE,
   SET_LOADER_TRUE,
   SET_PERSONALIZED_SOURCES,
+  SET_SELECTED_OPTIONS_IN_PERSONALIZED_SOURCES,
 } from "../actions/actionTypes";
 
 const initialState = {
   articles: [],
   personalizedSources: {},
+  selectedOptionsInPersonalizedResources: [],
   loading: false,
   error: false,
 };
@@ -31,6 +33,11 @@ const newsReducer = (state = initialState, action) => {
       return {
         ...state,
         personalizedSources: action.payload,
+      };
+    case SET_SELECTED_OPTIONS_IN_PERSONALIZED_SOURCES:
+      return {
+        ...state,
+        selectedOptionsInPersonalizedResources: action.payload,
       };
     case SET_LOADER_TRUE:
       return {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../styles/Personalized.css";
 import Loading from "../components/Loading";
 import NoArticleFound from "../components/NoArticleFound";
@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   clearPersonalizedArticles,
   personalizedArticles,
+  setOptionsForPersonalizedSources,
 } from "../redux/actions/newsActions";
+import NavigateToTop from "../components/NavigateToTop";
 
 const categories = [
   "World",
@@ -20,19 +22,14 @@ const categories = [
 ];
 
 const Personalized = () => {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const selectedOptions = useSelector(
+    (state) => state.news.selectedOptionsInPersonalizedResources
+  );
   const personalizedSources = useSelector(
     (state) => state.news.personalizedSources
   );
   const loader = useSelector((state) => state.news.loading);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const savedOptions = sessionStorage.getItem("selectedOptions");
-    if (savedOptions) {
-      setSelectedOptions(JSON.parse(savedOptions));
-    }
-  }, []);
 
   const handleOptionChange = (option) => {
     const lowerCaseOption = option.toLowerCase();
@@ -40,11 +37,7 @@ const Personalized = () => {
       ? selectedOptions.filter((item) => item !== lowerCaseOption)
       : [...selectedOptions, lowerCaseOption];
 
-    setSelectedOptions(newSelectedOptions);
-    sessionStorage.setItem(
-      "selectedOptions",
-      JSON.stringify(newSelectedOptions)
-    );
+    dispatch(setOptionsForPersonalizedSources(newSelectedOptions));
   };
 
   useEffect(() => {
@@ -96,6 +89,7 @@ const Personalized = () => {
               </div>
             )
         )}
+      <NavigateToTop />
     </div>
   );
 };

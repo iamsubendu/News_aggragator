@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import FilterPanel from "../components/FilterPanel";
 import NoArticleFound from "../components/NoArticleFound";
+import NavigateToTop from "../components/NavigateToTop";
 
 const News = () => {
   const articles = useSelector((state) => state.news.articles);
@@ -25,6 +26,7 @@ const News = () => {
               ))}
           </div>
         )}
+        <NavigateToTop />
       </div>
     </>
   );

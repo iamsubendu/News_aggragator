@@ -34,14 +34,13 @@
   .filterPanel .options {
     gap: 0.5rem;
   }
+}
 
+@media (max-width: 480px) {
   .filterPanel .filteredArticles {
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
     grid-auto-rows: 8em;
   }
-}
-
-@media (max-width: 480px) {
   .filterPanel .options {
     width: 100%;
   }
